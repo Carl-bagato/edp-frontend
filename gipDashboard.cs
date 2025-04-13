@@ -16,18 +16,5 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
-
-        private void addgipbtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void backbtn_Click(object sender, EventArgs e)
-        {
-            Form1 form1 = new Form1();
-            form1.FormClosed += (s, args) => this.Show();
-            form1.Show();
-            this.Hide();
-        }
     }
 }
