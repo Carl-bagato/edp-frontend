@@ -15,6 +15,15 @@ namespace WindowsFormsApp1
         public loginForm()
         {
             InitializeComponent();
+
+            // Lock form to center of screen
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Optional: prevent resizing or moving
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -28,6 +37,11 @@ namespace WindowsFormsApp1
         private void button2_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
