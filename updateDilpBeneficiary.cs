@@ -97,5 +97,10 @@ namespace WindowsFormsApp1
             form1.Show();
             this.Hide();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

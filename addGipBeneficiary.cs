@@ -21,5 +21,21 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gipDashboard dilpForm = new gipDashboard();
+            dilpForm.FormClosed += (s, args) => this.Show();
+            dilpForm.Show();
+            this.Hide();
+        }
+
+        private void submitbtn_Click(object sender, EventArgs e)
+        {
+            gipDashboard dilpForm = new gipDashboard();
+            dilpForm.FormClosed += (s, args) => this.Show();
+            dilpForm.Show();
+            this.Hide();
+        }
     }
 }

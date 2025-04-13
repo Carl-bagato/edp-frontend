@@ -135,6 +135,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(181, 451);
             this.panel1.TabIndex = 17;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button5
             // 
@@ -217,9 +218,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(221, 99);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(141, 13);
+            this.label3.Size = new System.Drawing.Size(135, 13);
             this.label3.TabIndex = 35;
-            this.label3.Text = "Spes Beneficiary Information";
+            this.label3.Text = "GIP Beneficiary Information";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // dataGridView1
