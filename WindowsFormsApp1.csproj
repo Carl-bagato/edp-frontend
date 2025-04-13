@@ -54,11 +54,23 @@
     <Compile Include="addDilpBeneficiary.Designer.cs">
       <DependentUpon>addDilpBeneficiary.cs</DependentUpon>
     </Compile>
+    <Compile Include="addGipBeneficiary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addGipBeneficiary.Designer.cs">
+      <DependentUpon>addGipBeneficiary.cs</DependentUpon>
+    </Compile>
     <Compile Include="deleteDilpBeneficiary.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="deleteDilpBeneficiary.Designer.cs">
       <DependentUpon>deleteDilpBeneficiary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="deleteGipBeneficiary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deleteGipBeneficiary.Designer.cs">
+      <DependentUpon>deleteGipBeneficiary.cs</DependentUpon>
     </Compile>
     <Compile Include="dilpBeneficiary.cs">
       <SubType>Form</SubType>
@@ -89,6 +101,12 @@
     </Compile>
     <Compile Include="deleteSpesBeneficiary.Designer.cs">
       <DependentUpon>deleteSpesBeneficiary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gipBeneficiary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gipBeneficiary.Designer.cs">
+      <DependentUpon>gipBeneficiary.cs</DependentUpon>
     </Compile>
     <Compile Include="gipDashboard.cs">
       <SubType>Form</SubType>
@@ -122,6 +140,12 @@
     <Compile Include="updateDilpBeneficiary.Designer.cs">
       <DependentUpon>updateDilpBeneficiary.cs</DependentUpon>
     </Compile>
+    <Compile Include="updateGipBeneficiary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="updateGipBeneficiary.Designer.cs">
+      <DependentUpon>updateGipBeneficiary.cs</DependentUpon>
+    </Compile>
     <Compile Include="updateSpesBeneficiary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,8 +155,14 @@
     <EmbeddedResource Include="addDilpBeneficiary.resx">
       <DependentUpon>addDilpBeneficiary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="addGipBeneficiary.resx">
+      <DependentUpon>addGipBeneficiary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="deleteDilpBeneficiary.resx">
       <DependentUpon>deleteDilpBeneficiary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="deleteGipBeneficiary.resx">
+      <DependentUpon>deleteGipBeneficiary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="deleteSpesBeneficiary.resx">
       <DependentUpon>deleteSpesBeneficiary.cs</DependentUpon>
@@ -148,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="addSpesBeneficiary.resx">
       <DependentUpon>addSpesBeneficiary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gipBeneficiary.resx">
+      <DependentUpon>gipBeneficiary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gipDashboard.resx">
       <DependentUpon>gipDashboard.cs</DependentUpon>
@@ -172,6 +205,9 @@
     </Compile>
     <EmbeddedResource Include="updateDilpBeneficiary.resx">
       <DependentUpon>updateDilpBeneficiary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="updateGipBeneficiary.resx">
+      <DependentUpon>updateGipBeneficiary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="updateSpesBeneficiary.resx">
       <DependentUpon>updateSpesBeneficiary.cs</DependentUpon>
