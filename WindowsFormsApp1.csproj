@@ -90,6 +90,12 @@
     <Compile Include="deleteSpesBeneficiary.Designer.cs">
       <DependentUpon>deleteSpesBeneficiary.cs</DependentUpon>
     </Compile>
+    <Compile Include="gipDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gipDashboard.Designer.cs">
+      <DependentUpon>gipDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="loginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,12 +107,6 @@
     </Compile>
     <Compile Include="spesBeneficiary.Designer.cs">
       <DependentUpon>spesBeneficiary.cs</DependentUpon>
-    </Compile>
-    <Compile Include="gipDashboard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="gipDashboard.Designer.cs">
-      <DependentUpon>gipDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="spesDashboard.cs">
       <SubType>Form</SubType>
@@ -149,14 +149,14 @@
     <EmbeddedResource Include="addSpesBeneficiary.resx">
       <DependentUpon>addSpesBeneficiary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="gipDashboard.resx">
+      <DependentUpon>gipDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="loginForm.resx">
       <DependentUpon>loginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="spesBeneficiary.resx">
       <DependentUpon>spesBeneficiary.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gipDashboard.resx">
-      <DependentUpon>gipDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="spesDashboard.resx">
       <DependentUpon>spesDashboard.cs</DependentUpon>
