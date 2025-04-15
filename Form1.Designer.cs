@@ -35,6 +35,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Logout = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // spesbtn
@@ -43,7 +45,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.spesbtn.BackColor = System.Drawing.Color.LightBlue;
             this.spesbtn.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spesbtn.Location = new System.Drawing.Point(491, 111);
+            this.spesbtn.Location = new System.Drawing.Point(42, 113);
             this.spesbtn.Name = "spesbtn";
             this.spesbtn.Size = new System.Drawing.Size(253, 64);
             this.spesbtn.TabIndex = 0;
@@ -57,7 +59,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gipbtn.BackColor = System.Drawing.Color.LightBlue;
             this.gipbtn.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gipbtn.Location = new System.Drawing.Point(491, 301);
+            this.gipbtn.Location = new System.Drawing.Point(42, 303);
             this.gipbtn.Name = "gipbtn";
             this.gipbtn.Size = new System.Drawing.Size(253, 66);
             this.gipbtn.TabIndex = 1;
@@ -71,7 +73,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dilpbtn.BackColor = System.Drawing.Color.LightBlue;
             this.dilpbtn.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dilpbtn.Location = new System.Drawing.Point(491, 208);
+            this.dilpbtn.Location = new System.Drawing.Point(42, 210);
             this.dilpbtn.Name = "dilpbtn";
             this.dilpbtn.Size = new System.Drawing.Size(253, 65);
             this.dilpbtn.TabIndex = 2;
@@ -83,7 +85,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(509, 44);
+            this.label1.Location = new System.Drawing.Point(60, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(214, 23);
             this.label1.TabIndex = 3;
@@ -92,7 +94,7 @@
             // Logout
             // 
             this.Logout.BackColor = System.Drawing.Color.LightCoral;
-            this.Logout.Location = new System.Drawing.Point(671, 410);
+            this.Logout.Location = new System.Drawing.Point(222, 412);
             this.Logout.Name = "Logout";
             this.Logout.Size = new System.Drawing.Size(73, 23);
             this.Logout.TabIndex = 5;
@@ -105,11 +107,24 @@
             this.panel1.BackColor = System.Drawing.SystemColors.Window;
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel1.Location = new System.Drawing.Point(12, 44);
+            this.panel1.Location = new System.Drawing.Point(12, 67);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(441, 341);
+            this.panel1.Size = new System.Drawing.Size(394, 303);
             this.panel1.TabIndex = 4;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.DarkCyan;
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.dilpbtn);
+            this.panel2.Controls.Add(this.gipbtn);
+            this.panel2.Controls.Add(this.Logout);
+            this.panel2.Controls.Add(this.spesbtn);
+            this.panel2.Location = new System.Drawing.Point(442, 1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(325, 457);
+            this.panel2.TabIndex = 6;
             // 
             // Form1
             // 
@@ -117,18 +132,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(768, 459);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.Logout);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dilpbtn);
-            this.Controls.Add(this.gipbtn);
-            this.Controls.Add(this.spesbtn);
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "PESO";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -140,6 +152,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Logout;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

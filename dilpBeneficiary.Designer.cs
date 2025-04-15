@@ -49,85 +49,99 @@
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.Color.LightBlue;
+            this.button4.Font = new System.Drawing.Font("Microsoft New Tai Lue", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Location = new System.Drawing.Point(30, 101);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(125, 45);
             this.button4.TabIndex = 12;
             this.button4.Text = "Dashboard";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.LightBlue;
+            this.button3.Font = new System.Drawing.Font("Microsoft New Tai Lue", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(30, 152);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(125, 45);
             this.button3.TabIndex = 10;
             this.button3.Text = "Dilp Beneficiary";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // logoutbtn
             // 
+            this.logoutbtn.BackColor = System.Drawing.Color.LightCoral;
+            this.logoutbtn.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.logoutbtn.Location = new System.Drawing.Point(49, 405);
             this.logoutbtn.Name = "logoutbtn";
             this.logoutbtn.Size = new System.Drawing.Size(75, 23);
             this.logoutbtn.TabIndex = 6;
             this.logoutbtn.Text = "Logout";
-            this.logoutbtn.UseVisualStyleBackColor = true;
+            this.logoutbtn.UseVisualStyleBackColor = false;
             this.logoutbtn.Click += new System.EventHandler(this.logoutbtn_Click);
             // 
             // deletebtn
             // 
+            this.deletebtn.BackColor = System.Drawing.Color.LightBlue;
+            this.deletebtn.Font = new System.Drawing.Font("Microsoft New Tai Lue", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deletebtn.Location = new System.Drawing.Point(30, 304);
             this.deletebtn.Name = "deletebtn";
             this.deletebtn.Size = new System.Drawing.Size(125, 45);
             this.deletebtn.TabIndex = 7;
             this.deletebtn.Text = "Delete Beneficiary";
-            this.deletebtn.UseVisualStyleBackColor = true;
+            this.deletebtn.UseVisualStyleBackColor = false;
             this.deletebtn.Click += new System.EventHandler(this.deletebtn_Click);
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.LightBlue;
+            this.button2.Font = new System.Drawing.Font("Microsoft New Tai Lue", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(30, 253);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(125, 45);
             this.button2.TabIndex = 6;
             this.button2.Text = "Update Beneficiary";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // addspesbtn
             // 
+            this.addspesbtn.BackColor = System.Drawing.Color.LightBlue;
+            this.addspesbtn.Font = new System.Drawing.Font("Microsoft New Tai Lue", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addspesbtn.Location = new System.Drawing.Point(30, 203);
             this.addspesbtn.Name = "addspesbtn";
             this.addspesbtn.Size = new System.Drawing.Size(125, 44);
             this.addspesbtn.TabIndex = 1;
             this.addspesbtn.Text = "Add Beneficiary";
-            this.addspesbtn.UseVisualStyleBackColor = true;
+            this.addspesbtn.UseVisualStyleBackColor = false;
             this.addspesbtn.Click += new System.EventHandler(this.addspesbtn_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(76, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.Size = new System.Drawing.Size(52, 23);
             this.label2.TabIndex = 0;
             this.label2.Text = "DILP";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(464, 32);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.Size = new System.Drawing.Size(107, 23);
             this.label3.TabIndex = 21;
             this.label3.Text = "Dashboard";
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.BackColor = System.Drawing.Color.DarkCyan;
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.logoutbtn);
@@ -135,19 +149,21 @@
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.addspesbtn);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(6, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(181, 451);
+            this.panel1.Size = new System.Drawing.Size(187, 451);
             this.panel1.TabIndex = 17;
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(713, 22);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 16;
             this.button1.Text = "Back";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
@@ -200,6 +216,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);

@@ -49,22 +49,24 @@
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.LightBlue;
             this.button2.Location = new System.Drawing.Point(30, 253);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(125, 45);
             this.button2.TabIndex = 6;
             this.button2.Text = "Update Beneficiary";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // addspesbtn
             // 
+            this.addspesbtn.BackColor = System.Drawing.Color.LightBlue;
             this.addspesbtn.Location = new System.Drawing.Point(30, 203);
             this.addspesbtn.Name = "addspesbtn";
             this.addspesbtn.Size = new System.Drawing.Size(125, 44);
             this.addspesbtn.TabIndex = 1;
             this.addspesbtn.Text = "Add Beneficiary";
-            this.addspesbtn.UseVisualStyleBackColor = true;
+            this.addspesbtn.UseVisualStyleBackColor = false;
             this.addspesbtn.Click += new System.EventHandler(this.addspesbtn_Click);
             // 
             // button1
@@ -79,7 +81,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.BackColor = System.Drawing.Color.DarkCyan;
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.logoutbtn);
@@ -94,22 +96,24 @@
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.Color.LightBlue;
             this.button4.Location = new System.Drawing.Point(30, 101);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(125, 45);
             this.button4.TabIndex = 12;
             this.button4.Text = "Dashboard";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.LightBlue;
             this.button3.Location = new System.Drawing.Point(30, 152);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(125, 45);
             this.button3.TabIndex = 10;
             this.button3.Text = "GIP Beneficiary";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // logoutbtn
@@ -124,20 +128,22 @@
             // 
             // deletebtn
             // 
+            this.deletebtn.BackColor = System.Drawing.Color.LightBlue;
             this.deletebtn.Location = new System.Drawing.Point(30, 304);
             this.deletebtn.Name = "deletebtn";
             this.deletebtn.Size = new System.Drawing.Size(125, 45);
             this.deletebtn.TabIndex = 7;
             this.deletebtn.Text = "Delete Beneficiary";
-            this.deletebtn.UseVisualStyleBackColor = true;
+            this.deletebtn.UseVisualStyleBackColor = false;
             this.deletebtn.Click += new System.EventHandler(this.deletebtn_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(76, 32);
+            this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(72, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 13);
+            this.label1.Size = new System.Drawing.Size(42, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "GIP";
             // 
@@ -191,9 +197,10 @@
             // 
             this.label2.AllowDrop = true;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(431, 32);
+            this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(383, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(135, 13);
+            this.label2.Size = new System.Drawing.Size(226, 23);
             this.label2.TabIndex = 20;
             this.label2.Text = "GIP BENEFICIARY TABLE";
             // 

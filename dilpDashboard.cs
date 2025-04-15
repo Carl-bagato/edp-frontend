@@ -15,6 +15,15 @@ namespace WindowsFormsApp1
         public dilpDashboard()
         {
             InitializeComponent();
+
+            // Lock form to center of screen
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Optional: prevent resizing or moving
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
         }
 
         private void adddilpbtn_Click(object sender, EventArgs e)

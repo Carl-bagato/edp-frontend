@@ -15,6 +15,14 @@ namespace WindowsFormsApp1
         public addGipBeneficiary()
         {
             InitializeComponent();
+
+            // Lock form to center of screen
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Optional: prevent resizing or moving
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -36,6 +44,11 @@ namespace WindowsFormsApp1
             dilpForm.FormClosed += (s, args) => this.Show();
             dilpForm.Show();
             this.Hide();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

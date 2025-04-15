@@ -15,6 +15,15 @@ namespace WindowsFormsApp1
         public updateSpesBeneficiary()
         {
             InitializeComponent();
+
+            // Lock form to center of screen
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Optional: prevent resizing or moving
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -141,6 +150,11 @@ namespace WindowsFormsApp1
             spesForm.FormClosed += (s, args) => this.Show();
             spesForm.Show();
             this.Hide();
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

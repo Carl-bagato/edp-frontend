@@ -15,6 +15,14 @@ namespace WindowsFormsApp1
         public deleteDilpBeneficiary()
         {
             InitializeComponent();
+
+            // Lock form to center of screen
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Optional: prevent resizing or moving
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -86,6 +94,11 @@ namespace WindowsFormsApp1
 
             // Show the login form
             login.Show();
+        }
+
+        private void deleteDilpBeneficiary_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
