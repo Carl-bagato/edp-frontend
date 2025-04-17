@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1
 {
@@ -28,11 +30,28 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1 spesForm = new Form1();
-            spesForm.FormClosed += (s, args) => this.Show();
-            spesForm.Show();
-            this.Hide();
+            if (username.Text == "" || password.Text == "")
+            {
+                MessageBox.Show("Please fill all blank fields!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                bool loginSuccess = getData(username.Text.Trim(), password.Text.Trim());
+
+                if (loginSuccess)
+                {
+                    Form1 spesForm = new Form1();
+                    spesForm.FormClosed += (s, args) => this.Show();
+                    spesForm.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Account not found. Please check your username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -43,5 +62,35 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        public bool getData(string inputUser, string inputPass)
+        {
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp";
+
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(conString))
+                {
+                    con.Open();
+
+                    string query = "SELECT * FROM admin_table WHERE admin_username = @username AND admin_password = @password";
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@username", inputUser);
+                    cmd.Parameters.AddWithValue("@password", inputPass);
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    return reader.HasRows; // true if user found, false otherwise
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Connection failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+
+
     }
 }

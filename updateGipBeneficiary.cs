@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1
 {
@@ -23,6 +24,19 @@ namespace WindowsFormsApp1
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                con.Open();
+                MySqlDataAdapter sqldata = new MySqlDataAdapter("Select * From gip_table", con);
+                DataTable dtb1 = new DataTable();
+                sqldata.Fill(dtb1);
+
+                dataGridView1.DataSource = dtb1;
+
+            }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

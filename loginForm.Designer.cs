@@ -32,8 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.password = new System.Windows.Forms.MaskedTextBox();
+            this.username = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -77,19 +77,19 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Password:";
             // 
-            // maskedTextBox1
+            // password
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(101, 273);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(185, 20);
-            this.maskedTextBox1.TabIndex = 5;
+            this.password.Location = new System.Drawing.Point(101, 273);
+            this.password.Name = "password";
+            this.password.Size = new System.Drawing.Size(185, 20);
+            this.password.TabIndex = 5;
             // 
-            // textBox1
+            // username
             // 
-            this.textBox1.Location = new System.Drawing.Point(101, 238);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(185, 20);
-            this.textBox1.TabIndex = 6;
+            this.username.Location = new System.Drawing.Point(101, 238);
+            this.username.Name = "username";
+            this.username.Size = new System.Drawing.Size(185, 20);
+            this.username.TabIndex = 6;
             // 
             // loginForm
             // 
@@ -100,8 +100,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.maskedTextBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.password);
+            this.Controls.Add(this.username);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "loginForm";
@@ -117,7 +117,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.MaskedTextBox password;
+        private System.Windows.Forms.TextBox username;
     }
 }
