@@ -109,5 +109,88 @@ namespace WindowsFormsApp1
             spesForm.Show();
             this.Hide();
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                MessageBox.Show("Please enter a valid ID.");
+                return;
+            }
+
+            DialogResult confirmResult = MessageBox.Show(
+                "Are you sure you want to delete this record?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (confirmResult == DialogResult.No)
+                return;
+
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                try
+                {
+                    con.Open();
+
+                    MySqlCommand cmd = new MySqlCommand("DELETE FROM spes_table WHERE spes_id = @id", con);
+                    cmd.Parameters.AddWithValue("@id", int.Parse(textBox4.Text));
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0) { 
+                    MessageBox.Show("Successfully Deleted!");
+                    LoadSpesTable();
+                    }
+                    else
+                        MessageBox.Show("No record found with the specified ID.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void LoadSpesTable()
+        {
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                try
+                {
+                    con.Open();
+                    MySqlDataAdapter sqldata = new MySqlDataAdapter("SELECT * FROM spes_table", con);
+                    DataTable dtb1 = new DataTable();
+                    sqldata.Fill(dtb1);
+                    dataGridView1.DataSource = dtb1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load data: " + ex.Message);
+                }
+            }
+        }
+
+
+
+        private void deleteSpesBeneficiary_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

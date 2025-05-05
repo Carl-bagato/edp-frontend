@@ -170,5 +170,68 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                MessageBox.Show("Please enter an ID to search.");
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("Do you want to update this profile?",
+                                                  "Confirm Update",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+            {
+                textBox4.Clear();
+                return;
+            }
+
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                try
+                {
+                    con.Open();
+                    string query = "SELECT * FROM spes_table WHERE spes_id = @id";
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@id", int.Parse(textBox4.Text));
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    adapter.Fill(dt);
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No record found with the specified ID.");
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                    return;
+                }
+            }
+
+            // Pass DataTable row to the modal form
+            updateModal modal = new updateModal(dt.Rows[0]);
+            modal.FormClosed += (s, Args) => this.Show();
+            modal.Show();
+            this.Hide();
+        }
+
+
+
+
+        private void searchbtn_Click(object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }

@@ -154,6 +154,12 @@
     <Compile Include="deleteSpesBeneficiary.Designer.cs">
       <DependentUpon>deleteSpesBeneficiary.cs</DependentUpon>
     </Compile>
+    <Compile Include="updateModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="updateModal.Designer.cs">
+      <DependentUpon>updateModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="gipBeneficiary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="updateGipBeneficiary.resx">
       <DependentUpon>updateGipBeneficiary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="updateModal.resx">
+      <DependentUpon>updateModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="updateSpesBeneficiary.resx">
       <DependentUpon>updateSpesBeneficiary.cs</DependentUpon>
