@@ -34,6 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.password = new System.Windows.Forms.MaskedTextBox();
             this.username = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
@@ -41,9 +42,9 @@
             this.button1.BackColor = System.Drawing.Color.DarkGray;
             this.button1.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(145, 330);
+            this.button1.Location = new System.Drawing.Point(101, 322);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 29);
+            this.button1.Size = new System.Drawing.Size(84, 27);
             this.button1.TabIndex = 0;
             this.button1.Text = "Login";
             this.button1.UseVisualStyleBackColor = false;
@@ -53,7 +54,7 @@
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Britannic Bold", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(101, 113);
+            this.label1.Location = new System.Drawing.Point(98, 105);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(188, 82);
             this.label1.TabIndex = 2;
@@ -83,6 +84,7 @@
             this.password.Name = "password";
             this.password.Size = new System.Drawing.Size(185, 20);
             this.password.TabIndex = 5;
+            this.password.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.password_MaskInputRejected);
             // 
             // username
             // 
@@ -91,12 +93,24 @@
             this.username.Size = new System.Drawing.Size(185, 20);
             this.username.TabIndex = 6;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(184, 299);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(102, 17);
+            this.checkBox1.TabIndex = 7;
+            this.checkBox1.Text = "Show Password";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // loginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(372, 485);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
@@ -119,5 +133,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.MaskedTextBox password;
         private System.Windows.Forms.TextBox username;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

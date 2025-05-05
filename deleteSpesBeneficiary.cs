@@ -44,7 +44,7 @@ namespace WindowsFormsApp1
             addSpesBeneficiary addspes = new addSpesBeneficiary();
             addspes.FormClosed += (s, Args) => this.Show();
             addspes.Show();
-            this.Hide();
+  
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -189,6 +189,11 @@ namespace WindowsFormsApp1
 
 
         private void deleteSpesBeneficiary_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
         {
 
         }

@@ -83,7 +83,6 @@ namespace WindowsFormsApp1
             addGipBeneficiary dilpForm = new addGipBeneficiary();
             dilpForm.FormClosed += (s, args) => this.Show();
             dilpForm.Show();
-            this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -108,6 +107,19 @@ namespace WindowsFormsApp1
             dilpForm.FormClosed += (s, args) => this.Show();
             dilpForm.Show();
             this.Hide();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.FormClosed += (s, args) => this.Show();
+            form1.Show();
+            this.Hide();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

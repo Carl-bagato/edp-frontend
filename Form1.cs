@@ -63,5 +63,13 @@ namespace WindowsFormsApp1
         {
             Application.Exit();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            adminSettings spesForm = new adminSettings ();
+            spesForm.FormClosed += (s, args) => this.Show();
+            spesForm.Show();
+            this.Hide();
+        }
     }
 }

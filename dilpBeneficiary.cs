@@ -66,7 +66,7 @@ namespace WindowsFormsApp1
             addDilpBeneficiary dilpForm = new addDilpBeneficiary();
             dilpForm.FormClosed += (s, args) => this.Show();
             dilpForm.Show();
-            this.Hide();
+      
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -114,6 +114,14 @@ namespace WindowsFormsApp1
 
             // Show the login form
             login.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.FormClosed += (s, args) => this.Show();
+            form1.Show();
+            this.Hide();
         }
     }
 }

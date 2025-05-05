@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
         public updateSpesBeneficiary()
         {
             InitializeComponent();
+            LoadSpesTable();
 
             // Lock form to center of screen
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -116,7 +117,6 @@ namespace WindowsFormsApp1
             addSpesBeneficiary addspes = new addSpesBeneficiary();
             addspes.FormClosed += (s, Args) => this.Show();
             addspes.Show();
-            this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -222,10 +222,29 @@ namespace WindowsFormsApp1
             updateModal modal = new updateModal(dt.Rows[0]);
             modal.FormClosed += (s, Args) => this.Show();
             modal.Show();
-            this.Hide();
+   
         }
 
+        private void LoadSpesTable()
+        {
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
 
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                try
+                {
+                    con.Open();
+                    MySqlDataAdapter sqldata = new MySqlDataAdapter("SELECT * FROM spes_table", con);
+                    DataTable dtb1 = new DataTable();
+                    sqldata.Fill(dtb1);
+                    dataGridView1.DataSource = dtb1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load data: " + ex.Message);
+                }
+            }
+        }
 
 
         private void searchbtn_Click(object sender, EventArgs e)
@@ -233,5 +252,12 @@ namespace WindowsFormsApp1
             
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.FormClosed += (s, args) => this.Show();
+            form1.Show();
+            this.Hide();
+        }
     }
 }

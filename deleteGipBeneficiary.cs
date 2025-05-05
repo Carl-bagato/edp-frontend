@@ -83,7 +83,7 @@ namespace WindowsFormsApp1
             addGipBeneficiary dilpForm = new addGipBeneficiary();
             dilpForm.FormClosed += (s, args) => this.Show();
             dilpForm.Show();
-            this.Hide();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -104,15 +104,87 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1 dilpForm = new Form1();
-            dilpForm.FormClosed += (s, args) => this.Show();
-            dilpForm.Show();
-            this.Hide();
+            if (string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                MessageBox.Show("Please enter a valid ID.");
+                return;
+            }
+
+            DialogResult confirmResult = MessageBox.Show(
+                "Are you sure you want to delete this record?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (confirmResult == DialogResult.No)
+                return;
+
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                try
+                {
+                    con.Open();
+
+                    MySqlCommand cmd = new MySqlCommand("DELETE FROM gip_table WHERE gip_id = @id", con);
+                    cmd.Parameters.AddWithValue("@id", int.Parse(textBox4.Text));
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Successfully Deleted!");
+                        LoadSpesTable();
+                    }
+                    else
+                        MessageBox.Show("No record found with the specified ID.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void LoadSpesTable()
+        {
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                try
+                {
+                    con.Open();
+                    MySqlDataAdapter sqldata = new MySqlDataAdapter("SELECT * FROM gip_table", con);
+                    DataTable dtb1 = new DataTable();
+                    sqldata.Fill(dtb1);
+                    dataGridView1.DataSource = dtb1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load data: " + ex.Message);
+                }
+            }
         }
 
         private void deleteGipBeneficiary_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.FormClosed += (s, args) => this.Show();
+            form1.Show();
+            this.Hide();
         }
     }
 }
