@@ -81,34 +81,76 @@ namespace WindowsFormsApp1
             using (MySqlConnection con = new MySqlConnection(conString))
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("insert into spes_table values (@lname,@mname,@fname,@sex,@bday,@address_id,@InSchool_id,@contact_num,@out_of_school,@osy_id,@4ps_mem,@number_of_years,@type,@email,@socmed_account)", con);
-                cmd.Parameters.AddWithValue("@lname",textBox1.Text);
+
+                MySqlCommand cmd;
+
+                // 1. Insert Address
+                //cmd = new MySqlCommand(@"INSERT INTO address_table (street, brgy, city, province) 
+                //                 VALUES (@zone, @brgy, @city, @prov); SELECT LAST_INSERT_ID();", con);
+                //cmd.Parameters.AddWithValue("@zone", textBox9.Text);
+                //cmd.Parameters.AddWithValue("@brgy", textBox10.Text);
+                //cmd.Parameters.AddWithValue("@city", textBox11.Text);
+                //cmd.Parameters.AddWithValue("@prov", textBox12.Text);
+                //int address_id = Convert.ToInt32(cmd.ExecuteScalar());
+                //if (address_id <= 0)
+                //{
+                //    MessageBox.Show("Failed to insert address.");
+                //    return;
+                //}
+
+                // 2. Insert School Info
+                //cmd = new MySqlCommand(@"INSERT INTO school_table (school_name, program/strand, year_level, school_year) 
+                //                 VALUES (@school, @strand, @yearLvl, @sy); SELECT LAST_INSERT_ID();", con);
+                //cmd.Parameters.AddWithValue("@school", textBox14.Text);
+                //cmd.Parameters.AddWithValue("@strand", textBox21.Text);
+                //cmd.Parameters.AddWithValue("@yearLvl", textBox25.Text);
+                //cmd.Parameters.AddWithValue("@sy", textBox29.Text);
+                //int school_id = Convert.ToInt32(cmd.ExecuteScalar());
+
+                //// 3. Insert OSY info (Optional)
+                //int osy_id = 0;
+                //if (!string.IsNullOrWhiteSpace(textBox35.Text))
+                //{
+                //    cmd = new MySqlCommand(@"INSERT INTO osy_table (last_sy_attended, last_yl_attended, last_sn_attended)
+                //                     VALUES (@sy, @yl, @sn); SELECT LAST_INSERT_ID();", con);
+                //    cmd.Parameters.AddWithValue("@sy", textBox35.Text);
+                //    cmd.Parameters.AddWithValue("@yl", textBox34.Text);
+                //    cmd.Parameters.AddWithValue("@sn", textBox32.Text);
+                //    osy_id = Convert.ToInt32(cmd.ExecuteScalar());
+                //}
+
+                // 4. Insert to spes_table
+                cmd = new MySqlCommand(@"INSERT INTO spes_table (lname, mname, fname, sex, bday,
+                                     contact_num, out_of_school, 4ps_mem, number_of_years, type, email, socmed_account)
+                                 VALUES (@lname, @mname, @fname, @sex, @bday, 
+                                         @contact, @outOfSchool, @is4ps, @years, @type, @email, @socmed)", con);
+
+                cmd.Parameters.AddWithValue("@lname", textBox1.Text);
                 cmd.Parameters.AddWithValue("@mname", textBox3.Text);
                 cmd.Parameters.AddWithValue("@fname", textBox2.Text);
                 cmd.Parameters.AddWithValue("@sex", listBox1.Text);
-                cmd.Parameters.AddWithValue("@bday", dateTimePicker1.Text);
-                cmd.Parameters.AddWithValue("@address_id", "1");
-                cmd.Parameters.AddWithValue("@InSchool_id", "1");
-                cmd.Parameters.AddWithValue("@contact_num", double.Parse(phone.Text));
-                cmd.Parameters.AddWithValue("@out_of_school", "no");
-                cmd.Parameters.AddWithValue("@osy_id", textBox1.Text);
-                cmd.Parameters.AddWithValue("@4ps_mem", textBox1.Text);
-                cmd.Parameters.AddWithValue("@number_of_years", int.Parse(textBox4.Text));
-                cmd.Parameters.AddWithValue("@type", "old");
-                cmd.Parameters.AddWithValue("@email", textBox1.Text);
-                cmd.Parameters.AddWithValue("@socmed_account", textBox8.Text);
+                cmd.Parameters.AddWithValue("@bday", dateTimePicker1.Value.Date);
+                //cmd.Parameters.AddWithValue("@addrID", address_id);
+                //cmd.Parameters.AddWithValue("@schoolID", school_id);
+                cmd.Parameters.AddWithValue("@contact", phone.Text);
+                cmd.Parameters.AddWithValue("@outOfSchool", "yes");
+                //cmd.Parameters.AddWithValue("@osyID", osy_id != 0 ? osy_id : (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@is4ps", "no"); // Update if you collect this field
+                cmd.Parameters.AddWithValue("@years", int.TryParse(textBox4.Text, out int n) ? n : 0);
+                cmd.Parameters.AddWithValue("@type", "old"); // You may also make this a drop-down
+                cmd.Parameters.AddWithValue("@email", textBox7.Text);
+                cmd.Parameters.AddWithValue("@socmed", textBox8.Text);
+
                 cmd.ExecuteNonQuery();
 
                 con.Close();
-                MessageBox.Show("sakses!");
+                MessageBox.Show("Successfully added SPES Beneficiary!");
 
-
-                //spesDashboard spesDashboard = new spesDashboard();
-                //spesDashboard.ShowDialog();
-                //this.Close();
+                spesBeneficiary spesDashboard = new spesBeneficiary();
+                spesDashboard.ShowDialog();
+                this.Close();
             }
 
-            
         }
 
         private void label9_Click(object sender, EventArgs e)
