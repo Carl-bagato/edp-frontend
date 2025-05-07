@@ -97,6 +97,7 @@ namespace WindowsFormsApp1
             addadmin.FormClosed += (s, args) => this.Show();
             addadmin.Show();
             this.Hide();
+            LoadSpesTable();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -138,6 +139,14 @@ namespace WindowsFormsApp1
                         MessageBox.Show("No record found with the specified ID.");
                         return;
                     }
+
+                    adminUpdateAccount updateForm = new adminUpdateAccount(dt.Rows[0]);
+                    updateForm.FormClosed += (s, args) => {
+                        this.Show();
+                        LoadSpesTable(); // Refresh data
+                    };
+                    updateForm.Show();
+                    this.Hide();
                 }
                 catch (Exception ex)
                 {
@@ -145,14 +154,6 @@ namespace WindowsFormsApp1
                     return;
                 }
             }
-
-
-
-
-            adminUpdateAccount addadmin = new adminUpdateAccount();
-            addadmin.FormClosed += (s, args) => this.Show();
-            addadmin.Show();
-            this.Hide();
         }
 
         private void logoutbtn_Click(object sender, EventArgs e)

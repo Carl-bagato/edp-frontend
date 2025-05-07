@@ -14,8 +14,6 @@ namespace WindowsFormsApp1
     public partial class addSpesBeneficiary : Form
     {
 
-        string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
-
         public addSpesBeneficiary()
         {
             InitializeComponent();

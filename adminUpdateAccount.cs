@@ -64,7 +64,7 @@ namespace WindowsFormsApp1
                              SET admin_username = @user, 
                                  admin_password = @pass, 
                                  admin_position = @pos, 
-                                 admin_name = @name, 
+                                 admin_name = @name
                              WHERE admin_id = @id";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);

@@ -18,6 +18,8 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
 
+            password.UseSystemPasswordChar = true;
+
             // Lock form to center of screen
             this.StartPosition = FormStartPosition.CenterScreen;
 
@@ -92,7 +94,7 @@ namespace WindowsFormsApp1
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            password.UseSystemPasswordChar = !checkBox1.Checked;
         }
 
         private void password_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
