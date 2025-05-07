@@ -46,7 +46,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.spesbtn.BackColor = System.Drawing.Color.LightBlue;
             this.spesbtn.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spesbtn.Location = new System.Drawing.Point(45, 72);
+            this.spesbtn.Location = new System.Drawing.Point(45, 118);
             this.spesbtn.Name = "spesbtn";
             this.spesbtn.Size = new System.Drawing.Size(253, 65);
             this.spesbtn.TabIndex = 0;
@@ -60,7 +60,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gipbtn.BackColor = System.Drawing.Color.LightBlue;
             this.gipbtn.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gipbtn.Location = new System.Drawing.Point(45, 154);
+            this.gipbtn.Location = new System.Drawing.Point(45, 200);
             this.gipbtn.Name = "gipbtn";
             this.gipbtn.Size = new System.Drawing.Size(253, 66);
             this.gipbtn.TabIndex = 1;
@@ -74,7 +74,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dilpbtn.BackColor = System.Drawing.Color.LightBlue;
             this.dilpbtn.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dilpbtn.Location = new System.Drawing.Point(45, 237);
+            this.dilpbtn.Location = new System.Drawing.Point(45, 283);
             this.dilpbtn.Name = "dilpbtn";
             this.dilpbtn.Size = new System.Drawing.Size(253, 65);
             this.dilpbtn.TabIndex = 2;
@@ -86,7 +86,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(71, 30);
+            this.label1.Location = new System.Drawing.Point(71, 76);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(214, 23);
             this.label1.TabIndex = 3;

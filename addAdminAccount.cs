@@ -57,6 +57,9 @@ namespace WindowsFormsApp1
 
                 con.Close();
                 MessageBox.Show("Successfully added Admin Account!");
+                adminAccounts form1 = new adminAccounts();
+                form1.FormClosed += (s, args) => this.Show();
+                form1.Show();
                 this.Close();
             }
         }

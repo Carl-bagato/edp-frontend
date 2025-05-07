@@ -30,6 +30,15 @@ namespace WindowsFormsApp1
                 dataGridView1.DataSource = dtb1;
 
             }
+
+            // Lock form to center of screen
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Optional: prevent resizing or moving
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
         }
 
         private void LoadSpesTable()
@@ -96,7 +105,6 @@ namespace WindowsFormsApp1
             addAdminAccount addadmin = new addAdminAccount();
             addadmin.FormClosed += (s, args) => this.Show();
             addadmin.Show();
-            this.Hide();
             LoadSpesTable();
         }
 
@@ -228,6 +236,50 @@ namespace WindowsFormsApp1
                     MessageBox.Show("Error: " + ex.Message);
                 }
             }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            adminSettings form1 = new adminSettings();
+            form1.FormClosed += (s, args) => this.Show();
+            form1.Show();
+            this.Hide();
+        }
+
+        private void adminSettings_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            adminActivityLogs form1 = new adminActivityLogs();
+            form1.FormClosed += (s, args) => this.Show();
+            form1.Show();
+            this.Hide();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            adminAccounts form1 = new adminAccounts();
+            form1.FormClosed += (s, args) => this.Show();
+            form1.Show();
+            this.Hide();
         }
     }
 }

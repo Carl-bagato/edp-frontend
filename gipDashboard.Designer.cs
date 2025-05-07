@@ -45,7 +45,6 @@
             this.addspesbtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -128,7 +127,7 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Font = new System.Drawing.Font("Microsoft New Tai Lue", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel2.Location = new System.Drawing.Point(197, 83);
+            this.panel2.Location = new System.Drawing.Point(197, 101);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(184, 67);
             this.panel2.TabIndex = 12;
@@ -206,38 +205,31 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(193, 174);
+            this.label6.Location = new System.Drawing.Point(193, 203);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(151, 23);
             this.label6.TabIndex = 25;
             this.label6.Text = "File Documents:";
             // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(197, 337);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(184, 46);
-            this.button8.TabIndex = 28;
-            this.button8.Text = "Dilp Beneficiaries.pdf";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(197, 285);
+            this.button6.Location = new System.Drawing.Point(197, 304);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(184, 46);
             this.button6.TabIndex = 27;
             this.button6.Text = "Dilp Beneficiaries.csv";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(197, 233);
+            this.button5.Location = new System.Drawing.Point(197, 252);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(184, 46);
             this.button5.TabIndex = 26;
             this.button5.Text = "DILP Statistics";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button1
             // 
@@ -256,7 +248,6 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(801, 451);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.button8);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label6);
@@ -293,7 +284,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button1;

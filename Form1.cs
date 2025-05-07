@@ -61,7 +61,12 @@ namespace WindowsFormsApp1
 
         private void Logout_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+             Application.Exit();
+
+            //loginForm spesForm = new loginForm();
+            //spesForm.FormClosed += (s, args) => this.Show();
+            //spesForm.Show();
+            //this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)

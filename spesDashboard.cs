@@ -7,7 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 using MySql.Data.MySqlClient;
+using System.IO;
+using Excel = Microsoft.Office.Interop.Excel;
+
+
 
 namespace WindowsFormsApp1
 {
@@ -267,8 +272,83 @@ namespace WindowsFormsApp1
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            ExportSpesToExcel();
         }
+
+    private void ExportSpesToExcel()
+    {
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                try
+                {
+                    con.Open();
+
+                    string query = "SELECT * FROM spes_table";
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No 'old' beneficiaries found.");
+                        return;
+                    }
+
+                    // ✅ Load your Excel template
+                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\stats_spes_bene.xlsx"; // Change this
+                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Statistics_SPES_Beneficiaries_Report.xlsx");
+
+                    Excel.Application excelApp = new Excel.Application();
+                    Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
+                    Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
+
+                    // Start inserting data from row 2 (assuming row 1 is header)
+                    int startRow = 4;
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        worksheet.Cells[startRow + i, 1] = dt.Rows[i]["spes_id"].ToString();
+                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["type"].ToString();
+                        worksheet.Cells[startRow + i, 2] = dt.Rows[i]["lname"].ToString();
+                        worksheet.Cells[startRow + i, 3] = dt.Rows[i]["fname"].ToString();
+                        worksheet.Cells[startRow + i, 4] = dt.Rows[i]["sex"].ToString();
+                        worksheet.Cells[startRow + i, 5] = dt.Rows[i]["bday"].ToString();
+                        worksheet.Cells[startRow + i, 6] = dt.Rows[i]["contact_num"].ToString();
+                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["email"].ToString();
+                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["4ps_mem"].ToString();
+                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["socmed_account"].ToString();
+                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["number_of_years"].ToString();
+                    }
+
+                    worksheet.Columns.AutoFit();
+
+                    // Save As new file
+                    workbook.SaveAs(savePath);
+                    workbook.Close(false);
+                    excelApp.Quit();
+
+
+                    // Cleanup
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+
+                    MessageBox.Show("Excel file saved:\n" + savePath, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    spesDashboard dilpForm = new spesDashboard();
+                    dilpForm.FormClosed += (s, args) => this.Show();
+                    dilpForm.Show();
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -276,6 +356,238 @@ namespace WindowsFormsApp1
             form1.FormClosed += (s, args) => this.Show();
             form1.Show();
             this.Hide();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ExportSpesToExcelWithInterop();
+        }
+        private void ExportSpesToExcelWithInterop()
+        {
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                try
+                {
+                    con.Open();
+
+                    string query = "SELECT * FROM spes_table";
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No 'old' beneficiaries found.");
+                        return;
+                    }
+
+                    // ✅ Load your Excel template
+                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\spes_bene.xlsx"; // Change this
+                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "All_SPES_Beneficiaries_Report.xlsx");
+                    
+                    Excel.Application excelApp = new Excel.Application();
+                    Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
+                    Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
+
+                    // Start inserting data from row 2 (assuming row 1 is header)
+                    int startRow = 4;
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        worksheet.Cells[startRow + i, 1] = dt.Rows[i]["spes_id"].ToString();
+                        worksheet.Cells[startRow + i, 2] = dt.Rows[i]["type"].ToString();
+                        worksheet.Cells[startRow + i, 3] = dt.Rows[i]["lname"].ToString();      
+                        worksheet.Cells[startRow + i, 4] = dt.Rows[i]["fname"].ToString();       
+                        worksheet.Cells[startRow + i, 5] = dt.Rows[i]["sex"].ToString();      
+                        worksheet.Cells[startRow + i, 6] = dt.Rows[i]["bday"].ToString(); 
+                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["contact_num"].ToString();
+                        worksheet.Cells[startRow + i, 8] = dt.Rows[i]["email"].ToString();
+                        worksheet.Cells[startRow + i, 11] = dt.Rows[i]["4ps_mem"].ToString();
+                        worksheet.Cells[startRow + i, 9] = dt.Rows[i]["socmed_account"].ToString();
+                        worksheet.Cells[startRow + i, 10] = dt.Rows[i]["number_of_years"].ToString();
+                    }
+
+                    worksheet.Columns.AutoFit();
+
+                    // Save As new file
+                    workbook.SaveAs(savePath);
+                    workbook.Close(false);
+                    excelApp.Quit();
+
+
+                    // Cleanup
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+
+                    MessageBox.Show("Excel file saved:\n" + savePath, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    spesDashboard dilpForm = new spesDashboard();
+                    dilpForm.FormClosed += (s, args) => this.Show();
+                    dilpForm.Show();
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            ExportOldSpesToExcelWithInterop();
+        }
+        private void ExportOldSpesToExcelWithInterop()
+        {
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                try
+                {
+                    con.Open();
+
+                    string query = "SELECT * FROM spes_table Where type = 'old'";
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No 'old' beneficiaries found.");
+                        return;
+                    }
+
+                    // ✅ Load your Excel template
+                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\spes_bene.xlsx"; // Change this
+                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Old_SPES_Beneficiaries_Report.xlsx");
+
+                    Excel.Application excelApp = new Excel.Application();
+                    Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
+                    Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
+
+                    // Start inserting data from row 2 (assuming row 1 is header)
+                    int startRow = 4;
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        worksheet.Cells[startRow + i, 1] = dt.Rows[i]["spes_id"].ToString();
+                        worksheet.Cells[startRow + i, 2] = dt.Rows[i]["lname"].ToString();
+                        worksheet.Cells[startRow + i, 3] = dt.Rows[i]["fname"].ToString();
+                        worksheet.Cells[startRow + i, 4] = dt.Rows[i]["sex"].ToString();
+                        worksheet.Cells[startRow + i, 5] = dt.Rows[i]["bday"].ToString();
+                        worksheet.Cells[startRow + i, 6] = dt.Rows[i]["contact_num"].ToString();
+                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["email"].ToString();
+                        worksheet.Cells[startRow + i, 8] = dt.Rows[i]["4ps_mem"].ToString();
+                        worksheet.Cells[startRow + i, 9] = dt.Rows[i]["socmed_account"].ToString();
+                        worksheet.Cells[startRow + i, 10] = dt.Rows[i]["number_of_years"].ToString();
+                    }
+
+                    worksheet.Columns.AutoFit();
+
+                    // Save As new file
+                    workbook.SaveAs(savePath);
+                    workbook.Close(false);
+                    excelApp.Quit();
+
+
+                    // Cleanup
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+
+                    MessageBox.Show("Excel file saved:\n" + savePath, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    spesDashboard dilpForm = new spesDashboard();
+                    dilpForm.FormClosed += (s, args) => this.Show();
+                    dilpForm.Show();
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ExportNewSpesToExcelWithInterop();
+        }
+        private void ExportNewSpesToExcelWithInterop()
+        {
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                try
+                {
+                    con.Open();
+
+                    string query = "SELECT * FROM spes_table Where type = 'new'";
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No 'old' beneficiaries found.");
+                        return;
+                    }
+
+                    // ✅ Load your Excel template
+                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\spes_bene.xlsx"; // Change this
+                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "New_SPES_Beneficiaries_Report.xlsx");
+
+                    Excel.Application excelApp = new Excel.Application();
+                    Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
+                    Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
+
+                    // Start inserting data from row 2 (assuming row 1 is header)
+                    int startRow = 4;
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        worksheet.Cells[startRow + i, 1] = dt.Rows[i]["spes_id"].ToString();
+                        worksheet.Cells[startRow + i, 2] = dt.Rows[i]["lname"].ToString();
+                        worksheet.Cells[startRow + i, 3] = dt.Rows[i]["fname"].ToString();
+                        worksheet.Cells[startRow + i, 4] = dt.Rows[i]["sex"].ToString();
+                        worksheet.Cells[startRow + i, 5] = dt.Rows[i]["bday"].ToString();
+                        worksheet.Cells[startRow + i, 6] = dt.Rows[i]["contact_num"].ToString();
+                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["email"].ToString();
+                        worksheet.Cells[startRow + i, 8] = dt.Rows[i]["4ps_mem"].ToString();
+                        worksheet.Cells[startRow + i, 9] = dt.Rows[i]["socmed_account"].ToString();
+                        worksheet.Cells[startRow + i, 10] = dt.Rows[i]["number_of_years"].ToString();
+                    }
+
+                    worksheet.Columns.AutoFit();
+
+                    // Save As new file
+                    workbook.SaveAs(savePath);
+                    workbook.Close(false);
+                    excelApp.Quit();
+
+
+                    // Cleanup
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+
+                    MessageBox.Show("Excel file saved:\n" + savePath, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    spesDashboard dilpForm = new spesDashboard();
+                    dilpForm.FormClosed += (s, args) => this.Show();
+                    dilpForm.Show();
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
         }
     }
 }
