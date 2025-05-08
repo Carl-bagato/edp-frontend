@@ -275,8 +275,8 @@ namespace WindowsFormsApp1
             ExportSpesToExcel();
         }
 
-    private void ExportSpesToExcel()
-    {
+      private void ExportSpesToExcel()
+        {
             string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
 
             using (MySqlConnection con = new MySqlConnection(conString))
@@ -293,43 +293,66 @@ namespace WindowsFormsApp1
 
                     if (dt.Rows.Count == 0)
                     {
-                        MessageBox.Show("No 'old' beneficiaries found.");
+                        MessageBox.Show("No beneficiaries found.");
                         return;
                     }
 
-                    // ✅ Load your Excel template
-                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\stats_spes_bene.xlsx"; // Change this
-                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Statistics_SPES_Beneficiaries_Report.xlsx");
+                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\stats_spes_bene.xlsx";
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // e.g. 20250508_174522
+                    string fileName = $"Statistics_SPES_Beneficiaries_Report_{timestamp}.xlsx";
+                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
 
                     Excel.Application excelApp = new Excel.Application();
                     Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
                     Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
 
-                    // Start inserting data from row 2 (assuming row 1 is header)
-                    int startRow = 4;
+                    // === STATISTICAL SUMMARY SECTION ===
+                    int summaryRow = 1;
 
-                    for (int i = 0; i < dt.Rows.Count; i++)
+                    int total = dt.Rows.Count;
+                    int male = dt.Select("sex = 'Male'").Length;
+                    int female = dt.Select("sex = 'Female'").Length;
+                    int is4ps = dt.Select("[4ps_mem] = 'Yes'").Length;
+                    int not4ps = dt.Select("[4ps_mem] = 'No'").Length;
+                    int hasSocmed = dt.Select("socmed_account IS NOT NULL AND socmed_account <> ''").Length;
+                    int noSocmed = dt.Select("socmed_account IS NULL OR socmed_account = ''").Length;
+
+                    var yearGroups = dt.AsEnumerable()
+                        .GroupBy(r => r.Field<int>("number_of_years")) 
+                        .ToDictionary(g => g.Key, g => g.Count());
+
+                    worksheet.Cells[summaryRow++, 1] = "Total Beneficiaries:";
+                    worksheet.Cells[summaryRow++, 2] = total;
+
+                    worksheet.Cells[summaryRow++, 1] = "Male:";
+                    worksheet.Cells[summaryRow++, 2] = male;
+
+                    worksheet.Cells[summaryRow++, 1] = "Female:";
+                    worksheet.Cells[summaryRow++, 2] = female;
+
+                    worksheet.Cells[summaryRow++, 1] = "4Ps Members:";
+                    worksheet.Cells[summaryRow++, 2] = is4ps;
+
+                    worksheet.Cells[summaryRow++, 1] = "Non-4Ps Members:";
+                    worksheet.Cells[summaryRow++, 2] = not4ps;
+
+                    worksheet.Cells[summaryRow++, 1] = "With SocMed Account:";
+                    worksheet.Cells[summaryRow++, 2] = hasSocmed;
+
+                    worksheet.Cells[summaryRow++, 1] = "No SocMed Account:";
+                    worksheet.Cells[summaryRow++, 2] = noSocmed;
+
+                    foreach (var group in yearGroups)
                     {
-                        worksheet.Cells[startRow + i, 1] = dt.Rows[i]["spes_id"].ToString();
-                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["type"].ToString();
-                        worksheet.Cells[startRow + i, 2] = dt.Rows[i]["lname"].ToString();
-                        worksheet.Cells[startRow + i, 3] = dt.Rows[i]["fname"].ToString();
-                        worksheet.Cells[startRow + i, 4] = dt.Rows[i]["sex"].ToString();
-                        worksheet.Cells[startRow + i, 5] = dt.Rows[i]["bday"].ToString();
-                        worksheet.Cells[startRow + i, 6] = dt.Rows[i]["contact_num"].ToString();
-                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["email"].ToString();
-                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["4ps_mem"].ToString();
-                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["socmed_account"].ToString();
-                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["number_of_years"].ToString();
+                        worksheet.Cells[summaryRow++, 1] = $"Years in SPES: {group.Key}";
+                        worksheet.Cells[summaryRow - 1, 2] = group.Value;
                     }
 
                     worksheet.Columns.AutoFit();
 
-                    // Save As new file
                     workbook.SaveAs(savePath);
                     workbook.Close(false);
                     excelApp.Quit();
-
 
                     // Cleanup
                     System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
@@ -348,6 +371,7 @@ namespace WindowsFormsApp1
                 }
             }
         }
+
 
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -464,8 +488,11 @@ namespace WindowsFormsApp1
 
                     // ✅ Load your Excel template
                     string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\spes_bene.xlsx"; // Change this
-                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Old_SPES_Beneficiaries_Report.xlsx");
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // e.g. 20250508_174522
+                    string fileName = $"Old_SPES_Beneficiaries_Report_{timestamp}.xlsx";
+                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
 
+                   
                     Excel.Application excelApp = new Excel.Application();
                     Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
                     Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
@@ -541,7 +568,9 @@ namespace WindowsFormsApp1
 
                     // ✅ Load your Excel template
                     string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\spes_bene.xlsx"; // Change this
-                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "New_SPES_Beneficiaries_Report.xlsx");
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // e.g. 20250508_174522
+                    string fileName = $"New_SPES_Beneficiaries_Report_{timestamp}.xlsx";
+                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
 
                     Excel.Application excelApp = new Excel.Application();
                     Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);

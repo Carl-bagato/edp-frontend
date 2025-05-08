@@ -230,7 +230,9 @@ namespace WindowsFormsApp1
 
                     // ✅ Load your Excel template
                     string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\stats_gip_bene.xlsx"; // Change this
-                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Statistics_Gip_Beneficiaries_Report.xlsx");
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // e.g. 20250508_174522
+                    string fileName = $"Statistics_GIP_Beneficiaries_Report_{timestamp}.xlsx";
+                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
 
                     Excel.Application excelApp = new Excel.Application();
                     Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
@@ -305,7 +307,9 @@ namespace WindowsFormsApp1
 
                     // ✅ Load your Excel template
                     string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\gip_bene.xlsx"; // Change this
-                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "List_gip_Beneficiaries_Report.xlsx");
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // e.g. 20250508_174522
+                    string fileName = $"GIP_Beneficiaries_List_{timestamp}.xlsx";
+                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
 
                     Excel.Application excelApp = new Excel.Application();
                     Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);

@@ -49,7 +49,7 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    MessageBox.Show("Account not found. Please check your username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Account not found.a Please check your username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -67,7 +67,7 @@ namespace WindowsFormsApp1
 
         public bool getData(string inputUser, string inputPass)
         {
-            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp";
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
 
             try
             {
@@ -75,14 +75,19 @@ namespace WindowsFormsApp1
                 {
                     con.Open();
 
-                    string query = "SELECT * FROM admin_table WHERE admin_username = @username AND admin_password = @password";
+                    string query = @"
+                SELECT * FROM admin_table 
+                WHERE BINARY TRIM(admin_username) = BINARY @username 
+                AND BINARY TRIM(admin_password) = BINARY @password";
+
                     MySqlCommand cmd = new MySqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@username", inputUser);
-                    cmd.Parameters.AddWithValue("@password", inputPass);
+                    cmd.Parameters.AddWithValue("@username", inputUser.Trim());
+                    cmd.Parameters.AddWithValue("@password", inputPass.Trim());
 
-                    MySqlDataReader reader = cmd.ExecuteReader();
-
-                    return reader.HasRows; // true if user found, false otherwise
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        return reader.HasRows;
+                    }
                 }
             }
             catch (Exception ex)
@@ -91,6 +96,8 @@ namespace WindowsFormsApp1
                 return false;
             }
         }
+
+
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {

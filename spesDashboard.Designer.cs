@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.addspesbtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -261,16 +261,16 @@
             // 
             // chart2
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart2.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart2.Legends.Add(legend1);
             this.chart2.Location = new System.Drawing.Point(397, 186);
             this.chart2.Name = "chart2";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart2.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart2.Series.Add(series1);
             this.chart2.Size = new System.Drawing.Size(388, 242);
             this.chart2.TabIndex = 9;
             this.chart2.Text = "chart2";
@@ -278,7 +278,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(197, 241);
+            this.button5.Location = new System.Drawing.Point(197, 236);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(184, 46);
             this.button5.TabIndex = 10;
@@ -288,7 +288,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(197, 293);
+            this.button6.Location = new System.Drawing.Point(197, 288);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(184, 46);
             this.button6.TabIndex = 11;
@@ -298,7 +298,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(197, 345);
+            this.button8.Location = new System.Drawing.Point(197, 340);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(184, 46);
             this.button8.TabIndex = 12;
@@ -328,7 +328,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(197, 397);
+            this.button7.Location = new System.Drawing.Point(197, 392);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(184, 46);
             this.button7.TabIndex = 36;
