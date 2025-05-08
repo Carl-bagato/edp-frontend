@@ -56,6 +56,7 @@ namespace WindowsFormsApp1
 
             // Then close the current form (logout)
             this.Close();
+        }
 
         private void button4_Click(object sender, EventArgs e)
         {

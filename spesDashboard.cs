@@ -294,9 +294,25 @@ namespace WindowsFormsApp1
                     }
 
                     string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\stats_spes_bene.xlsx";
-                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // e.g. 20250508_174522
-                    string fileName = $"Statistics_SPES_Beneficiaries_Report_{timestamp}.xlsx";
-                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string defaultFileName = $"Statistics_SPES_Beneficiaries_Report_{timestamp}.xlsx";
+
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Title = "Save SPES Statistics Report",
+                        Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                        FileName = defaultFileName,
+                        DefaultExt = "xlsx",
+                        AddExtension = true
+                    };
+
+                    if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    {
+                        MessageBox.Show("Export cancelled.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    string savePath = saveFileDialog.FileName;
 
                     Excel.Application excelApp = new Excel.Application();
                     Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
@@ -404,39 +420,55 @@ namespace WindowsFormsApp1
                         return;
                     }
 
-                    // ✅ Load your Excel template
-                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\spes_bene.xlsx"; // Change this
-                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "All_SPES_Beneficiaries_Report.xlsx");
-                    
+                    // ✅ Load Excel template
+                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\spes_bene.xlsx";
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string defaultFileName = $"All_SPES_Beneficiaries_Report_{timestamp}.xlsx";
+
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Title = "Save SPES Beneficiaries Report",
+                        Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                        FileName = defaultFileName,
+                        DefaultExt = "xlsx",
+                        AddExtension = true
+                    };
+
+                    if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    {
+                        MessageBox.Show("Export cancelled.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    string savePath = saveFileDialog.FileName;
+
+                    // ✅ Excel Interop
                     Excel.Application excelApp = new Excel.Application();
                     Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
                     Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
 
-                    // Start inserting data from row 2 (assuming row 1 is header)
                     int startRow = 4;
 
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         worksheet.Cells[startRow + i, 1] = dt.Rows[i]["spes_id"].ToString();
                         worksheet.Cells[startRow + i, 2] = dt.Rows[i]["type"].ToString();
-                        worksheet.Cells[startRow + i, 3] = dt.Rows[i]["lname"].ToString();      
-                        worksheet.Cells[startRow + i, 4] = dt.Rows[i]["fname"].ToString();       
-                        worksheet.Cells[startRow + i, 5] = dt.Rows[i]["sex"].ToString();      
-                        worksheet.Cells[startRow + i, 6] = dt.Rows[i]["bday"].ToString(); 
+                        worksheet.Cells[startRow + i, 3] = dt.Rows[i]["lname"].ToString();
+                        worksheet.Cells[startRow + i, 4] = dt.Rows[i]["fname"].ToString();
+                        worksheet.Cells[startRow + i, 5] = dt.Rows[i]["sex"].ToString();
+                        worksheet.Cells[startRow + i, 6] = dt.Rows[i]["bday"].ToString();
                         worksheet.Cells[startRow + i, 7] = dt.Rows[i]["contact_num"].ToString();
                         worksheet.Cells[startRow + i, 8] = dt.Rows[i]["email"].ToString();
-                        worksheet.Cells[startRow + i, 11] = dt.Rows[i]["4ps_mem"].ToString();
                         worksheet.Cells[startRow + i, 9] = dt.Rows[i]["socmed_account"].ToString();
                         worksheet.Cells[startRow + i, 10] = dt.Rows[i]["number_of_years"].ToString();
+                        worksheet.Cells[startRow + i, 11] = dt.Rows[i]["4ps_mem"].ToString();
                     }
 
                     worksheet.Columns.AutoFit();
 
-                    // Save As new file
                     workbook.SaveAs(savePath);
                     workbook.Close(false);
                     excelApp.Quit();
-
 
                     // Cleanup
                     System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
@@ -483,12 +515,27 @@ namespace WindowsFormsApp1
                     }
 
                     // ✅ Load your Excel template
-                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\spes_bene.xlsx"; // Change this
-                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // e.g. 20250508_174522
-                    string fileName = $"Old_SPES_Beneficiaries_Report_{timestamp}.xlsx";
-                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\old_spes_bene.xlsx"; // Change this
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string defaultFileName = $"OLD_SPES_Beneficiaries_Report_{timestamp}.xlsx";
 
-                   
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Title = "Save SPES Beneficiaries Report",
+                        Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                        FileName = defaultFileName,
+                        DefaultExt = "xlsx",
+                        AddExtension = true
+                    };
+
+                    if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    {
+                        MessageBox.Show("Export cancelled.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    string savePath = saveFileDialog.FileName;
+
                     Excel.Application excelApp = new Excel.Application();
                     Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
                     Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
@@ -563,7 +610,7 @@ namespace WindowsFormsApp1
                     }
 
                     // ✅ Load your Excel template
-                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\spes_bene.xlsx"; // Change this
+                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\new_spes_bene.xlsx"; // Change this
                     string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // e.g. 20250508_174522
                     string fileName = $"New_SPES_Beneficiaries_Report_{timestamp}.xlsx";
                     string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
