@@ -220,52 +220,103 @@ namespace WindowsFormsApp1
 
                     if (dt.Rows.Count == 0)
                     {
-                        MessageBox.Show("No 'old' beneficiaries found.");
+                        MessageBox.Show("No GIP  Records found.");
                         return;
                     }
 
-                    // ✅ Load your Excel template
-                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\stats_gip_bene.xlsx"; // Change this
-                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // e.g. 20250508_174522
-                    string fileName = $"Statistics_GIP_Beneficiaries_Report_{timestamp}.xlsx";
-                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\stats_gip_bene.xlsx";
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string defaultFileName = $"Statistics_GIP_Beneficiaries_Report_{timestamp}.xlsx";
+
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Title = "Save GIP Statistics Report",
+                        Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                        FileName = defaultFileName,
+                        DefaultExt = "xlsx",
+                        AddExtension = true
+                    };
+
+                    if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    {
+                        MessageBox.Show("Export cancelled.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    string savePath = saveFileDialog.FileName;
 
                     Excel.Application excelApp = new Excel.Application();
                     Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
                     Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
 
-                    // Start inserting data from row 2 (assuming row 1 is header)
-                    int startRow = 4;
+                    // === STATISTICS SECTION ===
+                    int summaryRow = 1;
 
-                    for (int i = 0; i < dt.Rows.Count; i++)
+                    int total = dt.Rows.Count;
+                    int male = dt.Select("sex = 'Male'").Length;
+                    int female = dt.Select("sex = 'Female'").Length;
+                    int withSocmed = dt.Select("socmed_account IS NOT NULL AND socmed_account <> ''").Length;
+                    int withoutSocmed = total - withSocmed;
+
+                    worksheet.Cells[summaryRow++, 1] = "Total Beneficiaries:";
+                    worksheet.Cells[summaryRow++, 2] = total;
+
+                    worksheet.Cells[summaryRow++, 1] = "Male:";
+                    worksheet.Cells[summaryRow++, 2] = male;
+
+                    worksheet.Cells[summaryRow++, 1] = "Female:";
+                    worksheet.Cells[summaryRow++, 2] = female;
+
+                    worksheet.Cells[summaryRow++, 1] = "With Social Media:";
+                    worksheet.Cells[summaryRow++, 2] = withSocmed;
+
+                    worksheet.Cells[summaryRow++, 1] = "Without Social Media:";
+                    worksheet.Cells[summaryRow++, 2] = withoutSocmed;
+
+                    // Optional: Age group statistics
+                    var ageGroups = new Dictionary<string, int>
+            {
+                { "18-25", 0 },
+                { "26-35", 0 },
+                { "36-45", 0 },
+                { "46+", 0 }
+            };
+
+                    foreach (DataRow row in dt.Rows)
                     {
-                        worksheet.Cells[startRow + i, 1] = dt.Rows[i]["gip_id"].ToString();
-                        worksheet.Cells[startRow + i, 2] = dt.Rows[i]["lname"].ToString();
-                        worksheet.Cells[startRow + i, 3] = dt.Rows[i]["fname"].ToString();
-                        worksheet.Cells[startRow + i, 4] = dt.Rows[i]["sex"].ToString();
-                        worksheet.Cells[startRow + i, 5] = dt.Rows[i]["bday"].ToString();
-                        worksheet.Cells[startRow + i, 6] = dt.Rows[i]["contact_num"].ToString();
-                        worksheet.Cells[startRow + i, 7] = dt.Rows[i]["email"].ToString();
-                        worksheet.Cells[startRow + i, 8] = dt.Rows[i]["socmed_account"].ToString();
+                        if (DateTime.TryParse(row["bday"].ToString(), out DateTime bday))
+                        {
+                            int age = DateTime.Now.Year - bday.Year;
+                            if (bday > DateTime.Now.AddYears(-age)) age--;
+
+                            if (age >= 18 && age <= 25) ageGroups["18-25"]++;
+                            else if (age <= 35) ageGroups["26-35"]++;
+                            else if (age <= 45) ageGroups["36-45"]++;
+                            else ageGroups["46+"]++;
+                        }
                     }
+
+                    foreach (var group in ageGroups)
+                    {
+                        worksheet.Cells[summaryRow++, 1] = $"Age Group {group.Key}:";
+                        worksheet.Cells[summaryRow - 1, 2] = group.Value;
+                    }
+
 
                     worksheet.Columns.AutoFit();
 
-                    // Save As new file
                     workbook.SaveAs(savePath);
                     workbook.Close(false);
                     excelApp.Quit();
 
-
-                    // Cleanup
                     System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
                     System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
                     System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
 
                     MessageBox.Show("Excel file saved:\n" + savePath, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    gipDashboard spesForm = new gipDashboard();
-                    spesForm.FormClosed += (s, args) => this.Show();
-                    spesForm.Show();
+                    dilpDashboard dilpForm = new dilpDashboard();
+                    dilpForm.FormClosed += (s, args) => this.Show();
+                    dilpForm.Show();
                     this.Hide();
                 }
                 catch (Exception ex)
@@ -303,10 +354,25 @@ namespace WindowsFormsApp1
 
                     // ✅ Load your Excel template
                     string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\gip_bene.xlsx"; // Change this
-                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // e.g. 20250508_174522
-                    string fileName = $"GIP_Beneficiaries_List_{timestamp}.xlsx";
-                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string defaultFileName = $"GIP_Beneficiaries_List_{timestamp}.xlsx";
 
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Title = "Save GIP BEneficiaries List",
+                        Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                        FileName = defaultFileName,
+                        DefaultExt = "xlsx",
+                        AddExtension = true
+                    };
+
+                    if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    {
+                        MessageBox.Show("Export cancelled.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    string savePath = saveFileDialog.FileName;
                     Excel.Application excelApp = new Excel.Application();
                     Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
                     Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];

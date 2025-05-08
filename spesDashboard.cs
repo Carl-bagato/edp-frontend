@@ -427,7 +427,7 @@ namespace WindowsFormsApp1
 
                     SaveFileDialog saveFileDialog = new SaveFileDialog
                     {
-                        Title = "Save SPES Beneficiaries Report",
+                        Title = "All SPES Beneficiaries Listt",
                         Filter = "Excel Workbook (*.xlsx)|*.xlsx",
                         FileName = defaultFileName,
                         DefaultExt = "xlsx",
@@ -515,13 +515,13 @@ namespace WindowsFormsApp1
                     }
 
                     // ✅ Load your Excel template
-                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\old_spes_bene.xlsx"; // Change this
+                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\spes_bene_old.xlsx"; // Change this
                     string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                    string defaultFileName = $"OLD_SPES_Beneficiaries_Report_{timestamp}.xlsx";
+                    string defaultFileName = $"OLD_SPES_Beneficiaries_List_{timestamp}.xlsx";
 
                     SaveFileDialog saveFileDialog = new SaveFileDialog
                     {
-                        Title = "Save SPES Beneficiaries Report",
+                        Title = "Old SPES Beneficiaries List",
                         Filter = "Excel Workbook (*.xlsx)|*.xlsx",
                         FileName = defaultFileName,
                         DefaultExt = "xlsx",
@@ -610,11 +610,26 @@ namespace WindowsFormsApp1
                     }
 
                     // ✅ Load your Excel template
-                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\new_spes_bene.xlsx"; // Change this
-                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // e.g. 20250508_174522
-                    string fileName = $"New_SPES_Beneficiaries_Report_{timestamp}.xlsx";
-                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\spes_bene_new.xlsx"; // Change this
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string defaultFileName = $"New_SPES_Beneficiaries_List_{timestamp}.xlsx";
 
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Title = "NEW SPES Beneficiaries List",
+                        Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                        FileName = defaultFileName,
+                        DefaultExt = "xlsx",
+                        AddExtension = true
+                    };
+
+                    if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    {
+                        MessageBox.Show("Export cancelled.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    string savePath = saveFileDialog.FileName;
                     Excel.Application excelApp = new Excel.Application();
                     Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
                     Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];

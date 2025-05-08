@@ -218,11 +218,26 @@ namespace WindowsFormsApp1
                         return;
                     }
 
-                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\atats_dilp_bene.xlsx";
-                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // e.g. 20250508_174522
-                    string fileName = $"Statistics_DILP_Beneficiaries_Report_{timestamp}.xlsx";
-                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+                    string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\stats_dilp_bene.xlsx";
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string defaultFileName = $"Statistics_Dilp_Beneficiaries_Report_{timestamp}.xlsx";
 
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Title = "Save SPES Statistics Report",
+                        Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                        FileName = defaultFileName,
+                        DefaultExt = "xlsx",
+                        AddExtension = true
+                    };
+
+                    if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    {
+                        MessageBox.Show("Export cancelled.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    string savePath = saveFileDialog.FileName;
                     Excel.Application excelApp = new Excel.Application();
                     Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
                     Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
@@ -335,9 +350,25 @@ namespace WindowsFormsApp1
 
                     // ✅ Load your Excel template
                     string templatePath = @"C:\Users\samsu\Desktop\edp1\Carl-bagato\edp-frontend\templates\dilp_bene.xlsx"; // Change this
-                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss"); // e.g. 20250508_174522
-                    string fileName = $"DILP_Beneficiaries_List_{timestamp}.xlsx";
-                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string defaultFileName = $"DILP_Beneficiaries_List_{timestamp}.xlsx";
+
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Title = "DILP_Beneficiaries_List",
+                        Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                        FileName = defaultFileName,
+                        DefaultExt = "xlsx",
+                        AddExtension = true
+                    };
+
+                    if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    {
+                        MessageBox.Show("Export cancelled.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    string savePath = saveFileDialog.FileName;
 
                     Excel.Application excelApp = new Excel.Application();
                     Excel.Workbook workbook = excelApp.Workbooks.Open(templatePath);
