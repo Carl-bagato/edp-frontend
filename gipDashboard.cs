@@ -91,25 +91,21 @@ namespace WindowsFormsApp1
 
         private void logoutbtn_Click(object sender, EventArgs e)
         {
-            loginForm login = Application.OpenForms.OfType<loginForm>().FirstOrDefault();
-
-            // If it's not open, create a new one *before* closing other forms
-            if (login == null)
-            {
-                login = new loginForm();
-            }
-
-            // Close all other forms except the login form
+            // Close all open forms except the one calling this method (usually the dashboard)
             foreach (Form frm in Application.OpenForms.Cast<Form>().ToList())
             {
-                if (frm != login)
+                if (frm != this)
                 {
                     frm.Close();
                 }
             }
 
-            // Show the login form
+            // Show the login form after closing others
+            loginForm login = new loginForm();
             login.Show();
+
+            // Then close the current form (logout)
+            this.Close();
         }
 
         private void chart2_Click(object sender, EventArgs e)

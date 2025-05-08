@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.logoutbtn = new System.Windows.Forms.Button();
@@ -40,8 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -64,6 +64,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(181, 451);
             this.panel1.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(-209, 252);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.TabIndex = 80;
+            this.label4.Text = "Enter ID:";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(297, 185);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(93, 28);
+            this.button5.TabIndex = 79;
+            this.button5.Text = "Back to Home";
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
@@ -89,7 +107,7 @@
             // 
             // logoutbtn
             // 
-            this.logoutbtn.Location = new System.Drawing.Point(55, 415);
+            this.logoutbtn.Location = new System.Drawing.Point(80, 415);
             this.logoutbtn.Name = "logoutbtn";
             this.logoutbtn.Size = new System.Drawing.Size(75, 23);
             this.logoutbtn.TabIndex = 6;
@@ -178,24 +196,6 @@
             this.button7.Text = "Update Profile";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(-209, 252);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
-            this.label4.TabIndex = 80;
-            this.label4.Text = "Enter ID:";
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(297, 185);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(93, 28);
-            this.button5.TabIndex = 79;
-            this.button5.Text = "Back to Home";
-            this.button5.UseVisualStyleBackColor = true;
             // 
             // label3
             // 

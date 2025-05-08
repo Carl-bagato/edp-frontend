@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -37,7 +38,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button5 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -57,6 +57,16 @@
             this.panel1.Size = new System.Drawing.Size(181, 451);
             this.panel1.TabIndex = 79;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(10, 124);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(156, 36);
+            this.button1.TabIndex = 83;
+            this.button1.Text = "View Admin Accounts";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button9
             // 
@@ -105,6 +115,7 @@
             this.logoutbtn.TabIndex = 6;
             this.logoutbtn.Text = "Logout";
             this.logoutbtn.UseVisualStyleBackColor = true;
+            this.logoutbtn.Click += new System.EventHandler(this.logoutbtn_Click);
             // 
             // label1
             // 
@@ -133,16 +144,6 @@
             this.button5.TabIndex = 80;
             this.button5.Text = "Back to Home";
             this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(10, 124);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(156, 36);
-            this.button1.TabIndex = 83;
-            this.button1.Text = "View Admin Accounts";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // adminActivityLogs
             // 

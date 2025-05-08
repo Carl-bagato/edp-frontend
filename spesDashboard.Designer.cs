@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.addspesbtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -124,7 +124,7 @@
             // 
             // logoutbtn
             // 
-            this.logoutbtn.Location = new System.Drawing.Point(49, 405);
+            this.logoutbtn.Location = new System.Drawing.Point(74, 404);
             this.logoutbtn.Name = "logoutbtn";
             this.logoutbtn.Size = new System.Drawing.Size(75, 23);
             this.logoutbtn.TabIndex = 6;
@@ -261,16 +261,16 @@
             // 
             // chart2
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart2.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart2.Legends.Add(legend2);
             this.chart2.Location = new System.Drawing.Point(397, 186);
             this.chart2.Name = "chart2";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart2.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart2.Series.Add(series2);
             this.chart2.Size = new System.Drawing.Size(388, 242);
             this.chart2.TabIndex = 9;
             this.chart2.Text = "chart2";

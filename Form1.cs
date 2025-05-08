@@ -61,7 +61,7 @@ namespace WindowsFormsApp1
 
         private void Logout_Click(object sender, EventArgs e)
         {
-             Application.Exit();
+            Application.Exit();
 
             //loginForm spesForm = new loginForm();
             //spesForm.FormClosed += (s, args) => this.Show();
@@ -75,6 +75,25 @@ namespace WindowsFormsApp1
             spesForm.FormClosed += (s, args) => this.Show();
             spesForm.Show();
             this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Close all open forms except the one calling this method (usually the dashboard)
+            foreach (Form frm in Application.OpenForms.Cast<Form>().ToList())
+            {
+                if (frm != this)
+                {
+                    frm.Close();
+                }
+            }
+
+            // Show the login form after closing others
+            loginForm login = new loginForm();
+            login.Show();
+
+            // Then close the current form (logout)
+            this.Close();
         }
     }
 }

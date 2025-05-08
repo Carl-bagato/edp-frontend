@@ -75,7 +75,7 @@
             // 
             this.logoutbtn.BackColor = System.Drawing.Color.LightCoral;
             this.logoutbtn.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logoutbtn.Location = new System.Drawing.Point(49, 405);
+            this.logoutbtn.Location = new System.Drawing.Point(80, 415);
             this.logoutbtn.Name = "logoutbtn";
             this.logoutbtn.Size = new System.Drawing.Size(75, 23);
             this.logoutbtn.TabIndex = 6;
