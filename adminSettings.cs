@@ -277,5 +277,60 @@ namespace WindowsFormsApp1
             form1.Show();
             this.Hide();
         }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            string searchValue = textBox2.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(searchValue))
+            {
+                MessageBox.Show("Please enter an ID or keyword to search.");
+                return;
+            }
+
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                try
+                {
+                    con.Open();
+
+                    // Modify this query depending on what field you want to search (admin_id, username, etc.)
+                    string query = "SELECT * FROM admin_table WHERE admin_id LIKE @search OR admin_name LIKE @search";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@search", "%" + searchValue + "%");
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+
+                            if (dt.Rows.Count == 0)
+                            {
+                                MessageBox.Show("No records found.");
+                            }
+                            else
+                            {
+                                dataGridView1.DataSource = dt;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Search failed: " + ex.Message);
+                }
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            admin_program_bene form1 = new admin_program_bene();
+            form1.FormClosed += (s, args) => this.Show();
+            form1.Show();
+            this.Hide();
+        }
     }
 }

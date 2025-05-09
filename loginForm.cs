@@ -32,27 +32,31 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (username.Text == "" || password.Text == "")
+            string user = username.Text.Trim();
+            string pass = password.Text.Trim();
+
+            if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
             {
-                MessageBox.Show("Please fill all blank fields!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please fill in all required fields!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            bool loginSuccess = getData(user, pass);
+
+            if (loginSuccess)
+            {
+                Form1 spesForm = new Form1();
+                spesForm.FormClosed += (s, args) => this.Show();
+                spesForm.Show();
+                this.Hide();
             }
             else
             {
-                bool loginSuccess = getData(username.Text.Trim(), password.Text.Trim());
-
-                if (loginSuccess)
-                {
-                    Form1 spesForm = new Form1();
-                    spesForm.FormClosed += (s, args) => this.Show();
-                    spesForm.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Account not found.a Please check your username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                MessageBox.Show("Account not found. Please check your username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+
 
 
         private void button2_Click(object sender, EventArgs e)
