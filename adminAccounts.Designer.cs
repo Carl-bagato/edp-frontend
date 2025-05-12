@@ -38,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button5 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -45,6 +46,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkCyan;
+            this.panel1.Controls.Add(this.button10);
             this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.button9);
             this.panel1.Controls.Add(this.button3);
@@ -59,7 +61,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(10, 128);
+            this.button6.Location = new System.Drawing.Point(10, 147);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(156, 36);
             this.button6.TabIndex = 84;
@@ -69,7 +71,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(10, 170);
+            this.button9.Location = new System.Drawing.Point(10, 189);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(156, 36);
             this.button9.TabIndex = 82;
@@ -79,7 +81,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(10, 212);
+            this.button3.Location = new System.Drawing.Point(10, 231);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(154, 35);
             this.button3.TabIndex = 77;
@@ -89,9 +91,9 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(10, 256);
+            this.button7.Location = new System.Drawing.Point(10, 275);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(156, 36);
+            this.button7.Size = new System.Drawing.Size(154, 36);
             this.button7.TabIndex = 80;
             this.button7.Text = "Update and Delete Account";
             this.button7.UseVisualStyleBackColor = true;
@@ -143,6 +145,16 @@
             this.button5.Text = "Back to Home";
             this.button5.UseVisualStyleBackColor = true;
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(10, 105);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(156, 36);
+            this.button10.TabIndex = 87;
+            this.button10.Text = "PESO Program List";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // adminAccounts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,5 +184,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button10;
     }
 }

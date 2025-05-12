@@ -1,116 +1,116 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Security.Cryptography;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using MySql.Data.MySqlClient;
 
-namespace WindowsFormsApp1
-{
-    public partial class loginForm : Form
+    namespace WindowsFormsApp1
     {
-        public loginForm()
+        public partial class loginForm : Form
         {
-            InitializeComponent();
-
-            password.UseSystemPasswordChar = true;
-
-            // Lock form to center of screen
-            this.StartPosition = FormStartPosition.CenterScreen;
-
-            // Optional: prevent resizing or moving
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string user = username.Text.Trim();
-            string pass = password.Text.Trim();
-
-            if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
+            public loginForm()
             {
-                MessageBox.Show("Please fill in all required fields!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                InitializeComponent();
+
+                password.UseSystemPasswordChar = true;
+
+                // Lock form to center of screen
+                this.StartPosition = FormStartPosition.CenterScreen;
+
+                // Optional: prevent resizing or moving
+                this.FormBorderStyle = FormBorderStyle.FixedDialog;
+                this.MaximizeBox = false;
+                this.MinimizeBox = false;
+
             }
 
-            bool loginSuccess = getData(user, pass);
+            private void button1_Click(object sender, EventArgs e)
+            {
+                string user = username.Text.Trim();
+                string pass = password.Text.Trim();
+
+                if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
+                {
+                    MessageBox.Show("Please fill in all required fields!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                bool loginSuccess = getData(user, pass);
 
             if (loginSuccess)
             {
                 Form1 spesForm = new Form1();
-                spesForm.FormClosed += (s, args) => this.Show();
+                spesForm.FormClosing += (s, args) => this.Show();
                 spesForm.Show();
                 this.Hide();
             }
             else
-            {
+            { 
                 MessageBox.Show("Account not found. Please check your username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-
-
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public bool getData(string inputUser, string inputPass)
-        {
-            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
-
-            try
-            {
-                using (MySqlConnection con = new MySqlConnection(conString))
-                {
-                    con.Open();
-
-                    string query = @"
-                SELECT * FROM admin_table 
-                WHERE BINARY TRIM(admin_username) = BINARY @username 
-                AND BINARY TRIM(admin_password) = BINARY @password";
-
-                    MySqlCommand cmd = new MySqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@username", inputUser.Trim());
-                    cmd.Parameters.AddWithValue("@password", inputPass.Trim());
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        return reader.HasRows;
-                    }
                 }
             }
-            catch (Exception ex)
+
+
+
+
+            private void button2_Click(object sender, EventArgs e)
             {
-                MessageBox.Show("Connection failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                Application.Exit();
+            }
+
+            private void pictureBox1_Click(object sender, EventArgs e)
+            {
+
+            }
+
+            public bool getData(string inputUser, string inputPass)
+            {
+                string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+
+                try
+                {
+                    using (MySqlConnection con = new MySqlConnection(conString))
+                    {
+                        con.Open();
+
+                        string query = @"
+                    SELECT * FROM admin_table 
+                    WHERE BINARY TRIM(admin_username) = BINARY @username 
+                    AND BINARY TRIM(admin_password) = BINARY @password";
+
+                        MySqlCommand cmd = new MySqlCommand(query, con);
+                        cmd.Parameters.AddWithValue("@username", inputUser.Trim());
+                        cmd.Parameters.AddWithValue("@password", inputPass.Trim());
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            return reader.HasRows;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Connection failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+
+
+
+            private void checkBox1_CheckedChanged(object sender, EventArgs e)
+            {
+                password.UseSystemPasswordChar = !checkBox1.Checked;
+            }
+
+            private void password_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+            {
+
             }
         }
-
-
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            password.UseSystemPasswordChar = !checkBox1.Checked;
-        }
-
-        private void password_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
     }
-}

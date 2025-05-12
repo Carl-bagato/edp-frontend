@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button10 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button8 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -66,11 +66,21 @@
             this.panel1.TabIndex = 20;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(10, 112);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(156, 36);
+            this.button10.TabIndex = 86;
+            this.button10.Text = "PESO Program List";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(10, 154);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(156, 36);
+            this.button6.Size = new System.Drawing.Size(154, 36);
             this.button6.TabIndex = 84;
             this.button6.Text = "View Admin Accounts";
             this.button6.UseVisualStyleBackColor = true;
@@ -80,7 +90,7 @@
             // 
             this.button9.Location = new System.Drawing.Point(10, 196);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(156, 36);
+            this.button9.Size = new System.Drawing.Size(154, 36);
             this.button9.TabIndex = 82;
             this.button9.Text = "Activity Logs";
             this.button9.UseVisualStyleBackColor = true;
@@ -100,7 +110,7 @@
             // 
             this.button7.Location = new System.Drawing.Point(10, 279);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(156, 36);
+            this.button7.Size = new System.Drawing.Size(154, 36);
             this.button7.TabIndex = 80;
             this.button7.Text = "Update and Delete Account";
             this.button7.UseVisualStyleBackColor = true;
@@ -210,16 +220,6 @@
             this.button8.Text = "Search:";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click_1);
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(10, 112);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(156, 36);
-            this.button10.TabIndex = 86;
-            this.button10.Text = "PESO Program List";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // adminSettings
             // 

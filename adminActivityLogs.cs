@@ -29,6 +29,14 @@ namespace WindowsFormsApp1
                 dataGridView1.DataSource = dtb1;
 
             }
+
+            // Lock form to center of screen
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Optional: prevent resizing or moving
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -74,21 +82,33 @@ namespace WindowsFormsApp1
 
         private void logoutbtn_Click(object sender, EventArgs e)
         {
-            // Close all open forms except the one calling this method (usually the dashboard)
-            foreach (Form frm in Application.OpenForms.Cast<Form>().ToList())
-            {
-                if (frm != this)
-                {
-                    frm.Close();
-                }
-            }
+            // Create a new login form
+            loginForm newLogin = new loginForm();
 
-            // Show the login form after closing others
-            loginForm login = new loginForm();
-            login.Show();
+            // Hide this form first to avoid UI flickering
+            this.Hide();
 
-            // Then close the current form (logout)
-            this.Close();
+            // Show login form
+            newLogin.Show();
+
+            // Close this form (after login form is fully shown)
+            this.BeginInvoke((Action)(() => this.Close()));
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            admin_program_bene form1 = new admin_program_bene();
+            form1.FormClosed += (s, args) => this.Show();
+            form1.Show();
+            this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            adminActivityLogs form1 = new adminActivityLogs();
+            form1.FormClosed += (s, args) => this.Show();
+            form1.Show();
+            this.Hide();
         }
     }
 }

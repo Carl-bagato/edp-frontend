@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button10 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkCyan;
+            this.panel1.Controls.Add(this.button10);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button9);
             this.panel1.Controls.Add(this.button3);
@@ -58,9 +60,19 @@
             this.panel1.TabIndex = 79;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(10, 110);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(156, 36);
+            this.button10.TabIndex = 87;
+            this.button10.Text = "PESO Program List";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(10, 124);
+            this.button1.Location = new System.Drawing.Point(10, 152);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(156, 36);
             this.button1.TabIndex = 83;
@@ -70,7 +82,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(10, 166);
+            this.button9.Location = new System.Drawing.Point(10, 194);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(156, 36);
             this.button9.TabIndex = 82;
@@ -80,7 +92,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(10, 208);
+            this.button3.Location = new System.Drawing.Point(10, 236);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(154, 35);
             this.button3.TabIndex = 77;
@@ -90,7 +102,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(10, 252);
+            this.button7.Location = new System.Drawing.Point(10, 280);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(156, 36);
             this.button7.TabIndex = 80;
@@ -106,6 +118,7 @@
             this.button4.TabIndex = 79;
             this.button4.Text = "Refresh";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // logoutbtn
             // 
@@ -174,5 +187,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button10;
     }
 }
