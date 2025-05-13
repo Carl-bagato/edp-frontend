@@ -49,6 +49,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // phone
@@ -132,7 +134,7 @@
             // 
             // submitbtn
             // 
-            this.submitbtn.Location = new System.Drawing.Point(158, 346);
+            this.submitbtn.Location = new System.Drawing.Point(158, 379);
             this.submitbtn.Name = "submitbtn";
             this.submitbtn.Size = new System.Drawing.Size(75, 36);
             this.submitbtn.TabIndex = 95;
@@ -142,7 +144,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(77, 346);
+            this.button1.Location = new System.Drawing.Point(77, 379);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 36);
             this.button1.TabIndex = 94;
@@ -234,11 +236,29 @@
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 84;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(50, 341);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(155, 13);
+            this.label6.TabIndex = 131;
+            this.label6.Text = "Number of Years as Benefiiary?";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(211, 335);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(49, 20);
+            this.textBox4.TabIndex = 130;
+            // 
             // updateModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(312, 427);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.phone);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.dateTimePicker1);
@@ -290,5 +310,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }

@@ -189,5 +189,13 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.FormClosed += (s, args) => this.Show();
+            form1.Show();
+            this.Hide();
+        }
     }
 }

@@ -27,6 +27,7 @@ namespace WindowsFormsApp1
                 sqldata.Fill(dtb1);
 
                 dataGridView1.DataSource = dtb1;
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             }
 
@@ -49,7 +50,28 @@ namespace WindowsFormsApp1
             adminActivityLogs form1 = new adminActivityLogs();
             form1.FormClosed += (s, args) => this.Show();
             form1.Show();
-            this.Hide();
+            LoadSpesTable();
+        }
+
+        private void LoadSpesTable()
+        {
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                try
+                {
+                    con.Open();
+                    MySqlDataAdapter sqldata = new MySqlDataAdapter("SELECT * FROM admin_table", con);
+                    DataTable dtb1 = new DataTable();
+                    sqldata.Fill(dtb1);
+                    dataGridView1.DataSource = dtb1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load data: " + ex.Message);
+                }
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -106,6 +128,14 @@ namespace WindowsFormsApp1
         private void button4_Click(object sender, EventArgs e)
         {
             adminActivityLogs form1 = new adminActivityLogs();
+            form1.FormClosed += (s, args) => this.Show();
+            form1.Show();
+            this.Hide();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
             form1.FormClosed += (s, args) => this.Show();
             form1.Show();
             this.Hide();

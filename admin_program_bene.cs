@@ -113,8 +113,6 @@ namespace WindowsFormsApp1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // You can add your logic here if you want to do something when a cell is clicked
-            // For example:
             MessageBox.Show("Cell clicked at row " + e.RowIndex + " and column " + e.ColumnIndex);
         }
 
@@ -420,8 +418,9 @@ namespace WindowsFormsApp1
             adminActivityLogs spesForm = new adminActivityLogs();
             spesForm.FormClosed += (s, args) => this.Show();
             spesForm.Show();
-            this.Hide();
+            LoadSpesTable();
         }
+
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -437,6 +436,27 @@ namespace WindowsFormsApp1
             spesForm.FormClosed += (s, args) => this.Show();
             spesForm.Show();
             this.Hide();
+        }
+
+        private void LoadSpesTable()
+        {
+            string conString = "server=localhost;uid=root;pwd=1802;database=peso_edp_final";
+
+            using (MySqlConnection con = new MySqlConnection(conString))
+            {
+                try
+                {
+                    con.Open();
+                    MySqlDataAdapter sqldata = new MySqlDataAdapter("SELECT * FROM admin_table", con);
+                    DataTable dtb1 = new DataTable();
+                    sqldata.Fill(dtb1);
+                    dataGridView1.DataSource = dtb1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load data: " + ex.Message);
+                }
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
