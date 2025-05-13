@@ -30,31 +30,31 @@
 
             }
 
-            private void button1_Click(object sender, EventArgs e)
-            {
-                string user = username.Text.Trim();
-                string pass = password.Text.Trim();
-
-                if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
+                private void button1_Click(object sender, EventArgs e)
                 {
-                    MessageBox.Show("Please fill in all required fields!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                    string user = username.Text.Trim();
+                    string pass = password.Text.Trim();
 
-                bool loginSuccess = getData(user, pass);
+                    if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
+                    {
+                        MessageBox.Show("Please fill in all required fields!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
-            if (loginSuccess)
-            {
-                Form1 spesForm = new Form1();
-                spesForm.FormClosing += (s, args) => this.Show();
-                spesForm.Show();
-                this.Hide();
-            }
-            else
-            { 
-                MessageBox.Show("Account not found. Please check your username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    bool loginSuccess = getData(user, pass);
+
+                    if (loginSuccess)
+                    {
+                        Form1 spesForm = new Form1();
+                        spesForm.FormClosing += (s, args) => this.Show();
+                        spesForm.Show();
+                        this.Hide();
+                    }
+                    else
+                    { 
+                        MessageBox.Show("Account not found. Please check your username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-            }
 
 
 
